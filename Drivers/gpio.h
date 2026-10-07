@@ -4,7 +4,7 @@
 
 #define CPU_CLK_HZ        64000000U      /* H747 default after reset: HSI 64 MHz. Change if you set up a PLL. */
 
-/* GPIOC base address (AHB4 bus) */
+/* GPIO base address (AHB4 bus) */
 #define RCC_AHB4ENR (*(volatile uint32_t *)0x580244E0UL)
  
 /* GPIOC base address (AHB4 bus) */
@@ -13,7 +13,7 @@
 
 
 /* RCC AHB4ENR bit position for GPIOC */ /* GPIOC enable bit (A=0, B=1, C=2) */
-#define GPIOC_BTN_RCC_BIT 2U /
+#define GPIOC_BTN_RCC_BIT 2U 
 #define GPIOI_LED_RCC_BIT 8U
 
 
@@ -32,6 +32,13 @@ void GPIO_LED_Init(uint32_t pin);
 void GPIO_LED_On(uint32_t pin);
 void GPIO_LED_Off(uint32_t pin);
 void GPIO_Delay_ms(uint32_t ms);
+
+/* USART */
+void     USART_Init(uint32_t baud);
+void     USART_Write_Char(char c);
+void     USART_Write_String(const char *s);
+uint32_t USART_Rx_Ready(void);      /* 1 = a byte is waiting */
+char     USART_Read_Char(void);     /* waits until a byte arrives */
 
 
 #endif /* GPIO_H */
